@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dhanwanth Singh Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- NEW: EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+<body>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+  <div class="intro-box">
+    <h1 id="introText">PRESS START</h1>
+
+    <div class="loading-bar" id="loadingBar">
+      <div class="loading-fill" id="loadingFill"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- NEW: DOWNLOAD RESUME -->
+<a href="resume.pdf" download class="resume-btn" id="resumeBtn">
+  DOWNLOAD RESUME
+</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="profile-card">
+    <h1>Dhanwanth Singh</h1>
+    <p>Front End Developer • Gamer • Music Addict</p>
+    <p class="sub">Building interactive, game-inspired web experiences.</p>
+  </div>
+</section>
+
+<!-- INFINITE SCROLLER -->
+<div class="infinite-scroller">
+  <div class="scroll-track">
+    <span class="outline">ALWAYS</span><span>GRINDING</span>
+    <span class="outline">ALWAYS</span><span>GRINDING</span>
+    <span class="outline">ALWAYS</span><span>GRINDING</span>
+    <span class="outline">ALWAYS</span><span>GRINDING</span>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="projects-section">
+  <div class="card-stack" id="cardStack">
+
+    <div class="project-card">
+      <h3>Productivity Dashboard</h3>
+      <p>Tasks • Habits • Goals</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Hospital Management</h3>
+      <p>Frontend + DB</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Event Planning Tool</h3>
+      <p>Invites • RSVPs</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <h2>READY FOR THE NEXT MISSION?</h2>
+
+  <!-- NEW: EmailJS form -->
+  <form class="contact-form" id="contactForm">
+    <input type="text" name="user_name" placeholder="Your Name" required>
+    <input type="email" name="user_email" placeholder="Your Email" required>
+    <input type="tel" name="user_phone" placeholder="Contact Number" required>
+
+    <button type="submit">CONTACT ME</button>
+    <p class="form-status" id="formStatus"></p>
+  </form>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

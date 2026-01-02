@@ -1,0 +1,302 @@
+:root{
+  --bg:#0b0b0f;
+  --card:#141420;
+  --blue:#00e5ff;
+  --purple:#9b5cff;
+  --text:#eaeaff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Orbitron',sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ================= INTRO SCREEN ================= */
+.intro{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  transition:opacity .6s ease;
+}
+
+.intro-box{
+  text-align:center;
+}
+
+.intro h1{
+  font-size:3rem;
+  letter-spacing:4px;
+}
+
+/* LOADING BAR */
+.loading-bar{
+  width:260px;
+  height:8px;
+  background:#1c1c2a;
+  border-radius:10px;
+  margin:20px auto 0;
+  overflow:hidden;
+  opacity:0;
+}
+
+.loading-fill{
+  width:0%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    var(--purple),
+    var(--blue)
+  );
+}
+
+/* ================= PAGE HIDDEN INITIALLY ================= */
+body.loading-active section,
+body.loading-active .resume-btn,
+body.loading-active .infinite-scroller{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* SMOOTH REVEAL */
+body.loaded section,
+body.loaded .resume-btn,
+body.loaded .infinite-scroller{
+  opacity:1;
+  pointer-events:auto;
+  transition:opacity .8s ease;
+}
+
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.profile-card{
+  background:var(--card);
+  padding:40px;
+  border-radius:22px;
+  max-width:520px;
+  box-shadow:0 0 40px rgba(155,92,255,.35);
+}
+
+.sub{opacity:.7;margin-top:10px}
+
+/* INFINITE SCROLLER */
+.infinite-scroller{
+  overflow:hidden;
+  white-space:nowrap;
+  padding:60px 0;
+}
+
+.scroll-track{
+  display:inline-block;
+  animation:scroll 18s linear infinite;
+}
+
+.scroll-track span{
+  font-size:3rem;
+  font-weight:800;
+  margin-right:60px;
+}
+
+.outline{
+  color:transparent;
+  -webkit-text-stroke:1px white;
+}
+
+@keyframes scroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+/* PROJECTS */
+.projects-section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.card-stack{
+  position:relative;
+  width:900px;
+  height:380px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.6s ease;
+}
+
+.project-card{
+  position:absolute;
+  width:260px;
+  height:360px;
+  background:linear-gradient(180deg,#141420,#0b0b0f);
+  border-radius:22px;
+  padding:25px;
+  transition:all .6s ease;
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
+}
+
+.project-card h3{color:var(--blue);}
+.project-card p{opacity:.7}
+
+/* STACKED */
+.project-card:nth-child(1){transform:scale(1);z-index:3;}
+.project-card:nth-child(2){transform:scale(.96);z-index:2;opacity:.85;}
+.project-card:nth-child(3){transform:scale(.92);z-index:1;opacity:.7;}
+
+/* EXPANDED */
+.card-stack.expanded .project-card:nth-child(1){transform:translateX(-280px);}
+.card-stack.expanded .project-card:nth-child(2){transform:translateX(0);}
+.card-stack.expanded .project-card:nth-child(3){transform:translateX(280px);}
+
+/* HOVER */
+.card-stack.expanded .project-card:hover{
+  transform:translateY(-10px) scale(1.03) !important;
+  box-shadow:0 0 40px rgba(0,229,255,.8);
+  z-index:5;
+}
+
+/* CONTACT */
+.contact{
+  padding:120px 8%;
+  text-align:center;
+}
+
+.contact h2{
+  font-size:2.2rem;
+  color:var(--purple);
+  margin-bottom:40px;
+}
+
+.contact-form{
+  max-width:400px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.contact-form input{
+  padding:14px;
+  background:var(--card);
+  border:1px solid #333;
+  border-radius:12px;
+  color:white;
+}
+
+.contact-form button{
+  padding:16px;
+  border-radius:30px;
+  border:2px solid var(--purple);
+  background:none;
+  color:white;
+  cursor:pointer;
+}
+
+/* ===== RESUME BUTTON ===== */
+.resume-btn{
+  position:fixed;
+  top:20px;
+  right:25px;
+  padding:10px 18px;
+  border-radius:30px;
+  border:1px solid var(--purple);
+  color:white;
+  text-decoration:none;
+  font-size:.8rem;
+  z-index:10;
+  transition:.3s ease;
+}
+
+.resume-btn.downloading{
+  background:var(--purple);
+  box-shadow:0 0 20px rgba(155,92,255,.8);
+  pointer-events:none;
+}
+
+/* ===== FORM STATUS ===== */
+.form-status{
+  margin-top:10px;
+  font-size:.85rem;
+  opacity:.8;
+}
+
+/* ===== RESUME BUTTON (BASE) ===== */
+.resume-btn{
+  position:fixed;
+  top:20px;
+  right:25px;
+  padding:10px 18px;
+  border-radius:30px;
+  border:1px solid var(--purple);
+  color:white;
+  text-decoration:none;
+  font-size:.8rem;
+  z-index:10;
+  background:rgba(20,20,32,0.8);
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+  overflow:hidden;
+}
+
+/* ===== HOVER EFFECT ===== */
+.resume-btn:hover{
+  transform:translateY(-3px);
+  background:var(--purple);
+  box-shadow:
+    0 0 15px rgba(155,92,255,.6),
+    0 0 30px rgba(155,92,255,.4);
+}
+
+/* ===== SHINE SWEEP ===== */
+.resume-btn::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:120%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+  transition:all .6s ease;
+}
+
+.resume-btn:hover::after{
+  left:120%;
+}
+
+/* ===== DOWNLOADING STATE ===== */
+.resume-btn.downloading{
+  background:var(--purple);
+  box-shadow:0 0 20px rgba(155,92,255,.8);
+  transform:none;
+  pointer-events:none;
+}
+
+.resume-btn.downloading::after{
+  display:none;
+}
