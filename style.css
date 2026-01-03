@@ -329,7 +329,7 @@ body {
   top: 60%;
   /* Lowered line */
   left: 0;
-  width: 100%;
+  width: 130%;
   height: 2px;
   background: rgba(255, 255, 255, 0.05);
   transform: translateY(-50%);
