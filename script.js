@@ -1,12 +1,11 @@
 // ================= REGISTER PLUGINS =================
 gsap.registerPlugin(ScrollTrigger);
 
-
-
 // ================= THREE.JS BACKGROUND (IMAGE SHADER) =================
 const canvas = document.getElementById('bg-canvas');
 const scene = new THREE.Scene();
 
+// Camera setup
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 
@@ -15,10 +14,11 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // -- TEXTURE LOADER --
 const loader = new THREE.TextureLoader();
+// Using 'bgimg.png' as requested for the background distortion
 const texture = loader.load('bgimg.png');
 
 // -- CUSTOM SHADER MATERIAL --
-// This creates the "water ripple" / "heat haze" effect
+// This creates the "water ripple" / "heat haze" effect driven by mouse movement
 const shaderMaterial = new THREE.ShaderMaterial({
   uniforms: {
     uTime: { value: 0 },
@@ -51,10 +51,10 @@ const shaderMaterial = new THREE.ShaderMaterial({
         mouseRipple = sin(dist * 20.0 - uTime * 5.0) * (0.3 - dist) * 0.1;
       }
       
-      // Gentle automatic wave
+      // Gentle automatic wave pattern
       float wave = sin(uv.y * 10.0 + uTime) * 0.005 + cos(uv.x * 10.0 + uTime * 0.5) * 0.005;
       
-      // Apply distortions to UV
+      // Apply distortions to UV coordinates
       uv.x += wave + mouseRipple;
       uv.y += wave + mouseRipple;
       
@@ -114,6 +114,7 @@ window.addEventListener('resize', () => {
 });
 
 // ================= INTRO LOADER =================
+// Handles the "Press to Start" interaction and loading bar
 const intro = document.getElementById('intro');
 const introText = document.getElementById('introText');
 const loadingFill = document.getElementById('loadingFill');
@@ -165,7 +166,7 @@ intro.addEventListener('click', () => {
 });
 
 
-// ================= SMOOTH SCROLL =================
+// ================= SMOOTH SCROLL (LENIS) =================
 const lenis = new Lenis({
   duration: 1.2,
   smoothWheel: true,
@@ -215,7 +216,7 @@ function initScrollAnimations() {
     y: 100,
     opacity: 0,
     rotateX: -15,
-    stagger: 0.2,
+    stagger: 0.2, // Sequential entry
     duration: 1,
     ease: 'power3.out',
     scrollTrigger: {
@@ -225,14 +226,17 @@ function initScrollAnimations() {
   });
 
 
-  // Process Section Horizontal Scroll
+  // ================= PROCESS SECTION LOGIC =================
+  // Handles the horizontal scroll on desktop vs vertical on mobile
   const track = document.querySelector('.process-track');
   const progressBar = document.querySelector('.progress-bar');
 
   ScrollTrigger.matchMedia({
+    // Desktop: Horizontal Scroll (Pin & Slide)
     "(min-width: 769px)": function () {
       if (!track) return;
 
+      // Calculate distance to scroll: (Content Width - Viewport Width)
       const scrollAmount = track.scrollWidth - window.innerWidth + window.innerWidth * 0.1;
 
       gsap.to(track, {
@@ -242,16 +246,16 @@ function initScrollAnimations() {
           trigger: ".process",
           start: "top top",
           end: "+=" + scrollAmount,
-          pin: true,
-          scrub: 1,
+          pin: true, // PIN section during scroll
+          scrub: 1,  // Link animation to scroll bar
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            // Connect progress bar to scroll progress
+            // Update progress bar
             if (progressBar) {
               gsap.to(progressBar, { width: `${self.progress * 100}%`, ease: 'none', duration: 0.1 });
             }
 
-            // Highlight cards as they pass center
+            // Highlight cards as they pass center of screen
             document.querySelectorAll('.step-card').forEach((card) => {
               const rect = card.getBoundingClientRect();
               const center = window.innerWidth / 2;
@@ -268,7 +272,7 @@ function initScrollAnimations() {
       });
     },
 
-    // Mobile: updates
+    // Mobile: Simple updates (Vertical Stack)
     "(max-width: 768px)": function () {
       ScrollTrigger.create({
         trigger: '.process',
@@ -406,6 +410,7 @@ document.querySelectorAll('.magnetic-btn').forEach((btn) => {
 });
 
 // Form Email Obfuscation
+// Hides email from static source code
 const contactForm = document.querySelector('.contact form');
 if (contactForm) {
   contactForm.addEventListener('submit', function (e) {

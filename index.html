@@ -6,9 +6,11 @@
   <title>Dhanwanth Singh | Creative Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- FONTS: Orbitron (Futuristic) & Audiowide (Display) -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 
+  <!-- EXTERNAL LIBRARIES: Three.js (3D), GSAP (Animations), Lenis (Smooth Scroll) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -18,9 +20,11 @@
 </head>
 
 <body class="loading">
+
+  <!-- 3D BACKGROUND CANVAS -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- ================= INTRO ================= -->
+  <!-- ================= LOADING SCREEN / INTRO ================= -->
   <div class="intro" id="intro">
     <div class="intro-box">
       <h1 id="introText" class="glitch" data-text="PRESS TO START">PRESS TO START</h1>
@@ -33,7 +37,7 @@
   <main id="smooth-wrapper">
     <div id="smooth-content">
 
-      <!-- ================= HERO ================= -->
+      <!-- ================= HERO SECTION ================= -->
       <section class="hero">
         <div class="identity-card" data-speed="0.5">
           <h1 class="hero-title">Who is <br> <span class="highlight">Dhanwanth Singh?</span></h1>
@@ -41,7 +45,7 @@
         </div>
       </section>
 
-      <!-- ================= MANIFESTO ================= -->
+      <!-- ================= MANIFESTO SECTION ================= -->
       <section class="manifesto">
         <div class="manifesto-text">
           <p class="reveal-text">He believes good interfaces don’t shout.</p>
@@ -51,7 +55,7 @@
         </div>
       </section>
 
-      <!-- ================= SYSTEM SPECS (ABOUT) ================= -->
+      <!-- ================= SYSTEM SPECS (ABOUT ME) ================= -->
       <section class="system-specs">
         <div class="hud-container">
           <h2 class="section-title">SYSTEM SPECS</h2>
@@ -90,11 +94,11 @@
         </div>
       </section>
 
-      <!-- ================= ARSENAL (SKILLS) ================= -->
+      <!-- ================= WEAPON ARSENAL (SKILLS) ================= -->
       <section class="arsenal">
         <h2 class="section-title">WEAPON ARSENAL</h2>
         <div class="skills-grid">
-          <!-- CORE -->
+          <!-- CORE TECHNOLOGIES -->
           <div class="skill-chip">
             <div class="chip-icon">💀</div>
             <div class="chip-name">HTML</div>
@@ -111,7 +115,7 @@
             <div class="chip-level">ADVANCED</div>
           </div>
 
-          <!-- FRAMEWORKS & LIBS -->
+          <!-- FRAMEWORKS & LIBRARIES -->
           <div class="skill-chip">
             <div class="chip-icon">⚛️</div>
             <div class="chip-name">REACT</div>
@@ -133,7 +137,7 @@
             <div class="chip-level">INTERMEDIATE</div>
           </div>
 
-          <!-- BACKEND & TOOLS -->
+          <!-- TOOLS & BACKEND -->
           <div class="skill-chip">
             <div class="chip-icon">🟢</div>
             <div class="chip-name">NODE.JS</div>
@@ -152,7 +156,7 @@
         </div>
       </section>
 
-      <!-- ================= WORK / GALLERY ================= -->
+      <!-- ================= SELECTED WORK ================= -->
       <section class="gallery">
         <h2 class="section-title">Selected Work</h2>
 
@@ -181,7 +185,7 @@
         </div>
       </section>
 
-      <!-- ================= PROCESS (HORIZONTAL SCROLL) ================= -->
+      <!-- ================= PROCESS (SCROLL ANIMATION) ================= -->
       <section class="process" id="process-section">
         <div class="process-container">
           <h2 class="section-title">How I Build</h2>
@@ -239,6 +243,7 @@
             <span class="hollow">ALWAYS</span> <span class="solid">GRINDING</span>
             <span class="hollow">ALWAYS</span> <span class="solid">GRINDING</span>
           </div>
+          <!-- DUPLICATE CONTENT FOR SEAMLESS LOOP -->
           <div class="marquee-content" aria-hidden="true">
             <span class="hollow">ALWAYS</span> <span class="solid">GRINDING</span>
             <span class="hollow">ALWAYS</span> <span class="solid">GRINDING</span>
@@ -248,11 +253,12 @@
         </div>
       </section>
 
-      <!-- ================= CONTACT ================= -->
+      <!-- ================= CONTACT & FORM ================= -->
       <section class="contact">
         <h2 class="section-title">READY FOR THE NEXT MISSION?</h2>
 
         <div class="form-wrapper">
+          <!-- Form Action is injected via JS for privacy -->
           <form action="" method="POST" id="contactForm">
             <input type="text" name="_honey" style="display:none">
             <input type="hidden" name="_captcha" value="false">
@@ -281,8 +287,8 @@
         </div>
       </section>
 
-    </div>
-  </main>
+    </div> <!-- /smooth-content -->
+  </main> <!-- /smooth-wrapper -->
 
   <script src="script.js"></script>
 
