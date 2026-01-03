@@ -1,23 +1,18 @@
 :root {
-  /* COLORS & THEME */
   --bg: #050505;
   --card-bg: rgba(20, 20, 32, 0.6);
   --primary: #00f3ff;
   --secondary: #bd00ff;
   --text: #eaeaff;
   --text-muted: #8888aa;
-
-  /* FONTS */
   --font-display: 'Audiowide', cursive;
-  /* Font body falls back to sans-serif default */
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* Custom Cursor Logic is handled by JS/CSS hiding default, 
-     but we keep default cursor here for fallback */
+  /* Default cursor restored */
 }
 
 body {
@@ -39,7 +34,7 @@ body {
   opacity: 0.8;
 }
 
-/* ================= LOADING & INTRO SCREEN ================= */
+/* ================= INTRO ================= */
 .intro {
   position: fixed;
   inset: 0;
@@ -50,12 +45,147 @@ body {
   z-index: 2000;
   transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.5s ease;
   cursor: pointer;
-  /* Makes it clear the user should interact */
+  /* Clickable */
 }
 
-/* ... existing styles ... */
+.intro-box {
+  text-align: center;
+  position: relative;
+}
 
-/* ================= MANIFESTO SECTION ================= */
+.intro h1 {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  letter-spacing: 8px;
+  color: white;
+  text-shadow: 0 0 10px var(--primary);
+  position: relative;
+}
+
+.loading-bar {
+  width: 300px;
+  height: 4px;
+  background: #222;
+  margin: 30px auto 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.loading-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+  transition: width 0.1s linear;
+}
+
+/* ================= HERO ================= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+  position: relative;
+  overflow: hidden;
+}
+
+.identity-card {
+  z-index: 2;
+  position: relative;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 5vw;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.highlight {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--primary);
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::before {
+  content: "Dhanwanth Singh?";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  color: var(--primary);
+  -webkit-text-stroke: 0;
+  border-right: 2px solid var(--primary);
+  overflow: hidden;
+  animation: fillText 4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 4s;
+}
+
+@keyframes fillText {
+  to {
+    width: 100%;
+  }
+}
+
+.tagline {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 500px;
+}
+
+.scroll-indicator,
+.scroll-theindicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.7;
+}
+
+.scroll-indicator span,
+.scroll-theindicator span {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+}
+
+.mouse {
+  width: 26px;
+  height: 40px;
+  border: 2px solid var(--text);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 2px;
+  animation: scrollMouse 1.5s infinite;
+}
+
+@keyframes scrollMouse {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+}
+
+/* ================= MANIFESTO ================= */
 .manifesto {
   min-height: 80vh;
   display: flex;
@@ -71,7 +201,7 @@ body {
   line-height: 1.5;
   margin-bottom: 2rem;
   opacity: 0.2;
-  /* Initial state: animate to 1 with GSAP */
+  /* To be animated by GSAP */
   transform: translateY(20px);
 }
 
@@ -83,10 +213,10 @@ body {
 
 .manifesto-text p.highlight::before {
   display: none;
-  /* Disable the wireframe fill animation used in hero for this section */
+  /* Disable hero anim style for this */
 }
 
-/* ================= GALLERY / SELECTED WORK ================= */
+/* ================= GALLERY ================= */
 .gallery {
   padding: 100px 10%;
 }
@@ -133,23 +263,12 @@ body {
 
 .work-card:hover {
   border-color: var(--primary);
-  box-shadow: 0 0 50px rgba(0, 243, 255, 0.4),
-    inset 0 0 30px rgba(0, 243, 255, 0.15);
-  transform: perspective(1000px) rotateX(-8deg);
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
 }
-
-.work-card:hover .card-content h3 {
-  text-shadow: 0 0 12px rgba(0, 243, 255, 0.8);
-}
-
-.work-card:hover .card-content p {
-  text-shadow: 0 0 8px rgba(0, 243, 255, 0.5);
-}
-
 
 .card-content {
   transform: translateZ(60px);
-  transition: text-shadow .3s ease;
+  /* Pop out effect */
 }
 
 .card-content h3 {
@@ -177,31 +296,37 @@ body {
 .process {
   padding: 0;
   overflow: hidden;
+  /* Hide scrollbar */
   background: var(--bg);
 }
 
 .process-container {
   width: 100%;
   height: 100vh;
+  /* Full viewport height for pinning */
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 5%;
+  /* Adjusted padding */
   position: relative;
 }
 
 .process-container h2 {
   position: absolute;
   top: 5%;
+  /* Moved up to prevent overlap */
   left: 5%;
   z-index: 2;
   font-size: 4rem;
+  /* Larger title */
   text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
 }
 
 .progress-container {
   position: absolute;
   top: 60%;
+  /* Lowered line */
   left: 0;
   width: 100%;
   height: 2px;
@@ -220,16 +345,21 @@ body {
 .process-track {
   display: flex;
   gap: 60px;
+  /* Reduced gap */
   padding-left: 5vw;
   position: relative;
   z-index: 2;
   margin-top: 50px;
+  /* Push down from title */
 }
 
 .step-card {
   min-width: 280px;
+  /* More compact */
   height: 320px;
+  /* More compact */
   background: rgba(10, 10, 16, 0.6);
+  /* Darker, more transparent */
   border: 1px solid rgba(0, 243, 255, 0.1);
   backdrop-filter: blur(15px);
   padding: 30px;
@@ -237,6 +367,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  /* Align top */
   position: relative;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
@@ -258,11 +389,16 @@ body {
   z-index: -1;
 }
 
+/* Connect the cards visually to the line */
 .step-card::before {
   content: '';
   position: absolute;
   left: 50%;
+  /* Center connector */
   bottom: -40px;
+  /* Connect to line below? No, let's keep side connector but adjust */
+  /* Reverting to side connector but cleaner */
+  /* Actually, let's remove the physical line connector and rely on the progress bar passing through */
   display: none;
 }
 
@@ -312,6 +448,7 @@ body {
 .step-card:hover {
   border-color: var(--primary);
   transform: translateY(-15px) scale(1.05);
+  /* Pop effect */
   background: rgba(20, 20, 30, 0.9);
   box-shadow: 0 10px 50px rgba(0, 243, 255, 0.15);
 }
@@ -393,11 +530,13 @@ body {
   height: 100%;
   object-fit: cover;
   filter: grayscale(100%) contrast(1.2) brightness(0.8);
+  /* Matrix/Sci-fi look */
   transition: 0.3s;
 }
 
 .glitch-avatar:hover {
   filter: grayscale(0%) contrast(1) brightness(1);
+  /* Reveal color on hover */
 }
 
 .stat-row {
@@ -424,10 +563,12 @@ body {
 /* ================= INFINITE MARQUEE ================= */
 .marquee-section {
   padding: 30px 0;
+  /* Adjusted padding */
   overflow: hidden;
   position: relative;
   z-index: 5;
   display: flex;
+  /* Ensure container is flex */
   align-items: center;
 }
 
@@ -435,6 +576,7 @@ body {
   display: flex;
   white-space: nowrap;
   width: max-content;
+  /* Ensure track takes full width of content */
   will-change: transform;
 }
 
@@ -446,11 +588,13 @@ body {
 .marquee-content span {
   font-family: 'Orbitron', sans-serif;
   font-size: 6rem;
+  /* Slightly smaller for better fit */
   font-weight: 900;
   margin: 0 40px;
   line-height: 1;
   display: inline-block;
   white-space: nowrap;
+  /* Force single line */
 }
 
 .hollow {
@@ -548,49 +692,14 @@ body {
   width: 100%;
 }
 
-/* ================= PROCESS (HORIZONTAL SCROLL) ================= */
-.process {
-  padding: 0;
-  overflow: hidden;
-  background: var(--bg);
-}
-
-.process-container {
-  width: 100%;
-  height: 100vh;
-  /* Full viewport height for pinning during scroll */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 5%;
-  position: relative;
-}
-
-/* ... existing process styles ... */
-
-.step-card {
-  /* ... card styling ... */
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  overflow: hidden;
-}
-
-/* ================= ARSENAL (SKILLS) ================= */
-.arsenal {
-  min-height: 100vh;
-  /* ... */
-}
-
 .skill-chip {
   background: rgba(15, 15, 25, 0.85);
-  /* Darker background as requested */
+  /* Darker, preferred by user */
   border: 1px solid rgba(0, 243, 255, 0.3);
   padding: 30px 20px;
   border-radius: 12px;
   text-align: center;
   position: relative;
-  overflow: hidden;
-  /* IMPORTANT: Fixes hover line overflowing rounded corners */
   cursor: pointer;
   transition: transform .35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow .35s ease, background .35s ease;
   box-shadow: 0 0 15px rgba(0, 243, 255, 0.05);
@@ -783,90 +892,8 @@ body {
     display: none;
   }
 
+  /* Hide custom cursor on touch */
   * {
     cursor: auto;
-  }
-}
-
-/* ================= MOBILE OPTIMIZATION ENHANCEMENTS ================= */
-@media (max-width: 768px) {
-
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .section-title {
-    font-size: 2.2rem;
-  }
-
-  /* Spacing */
-  .hero,
-  .manifesto,
-  .gallery,
-  .system-specs,
-  .arsenal,
-  .contact {
-    padding: 80px 5%;
-  }
-
-  /* Process Section */
-  .process-container {
-    padding-left: 0;
-    justify-content: flex-start;
-    /* Align top on mobile */
-    padding-top: 100px;
-  }
-
-  .process-container h2 {
-    font-size: 2.5rem;
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-bottom: 20px;
-    text-align: center;
-    width: 100%;
-  }
-
-  .process-track {
-    flex-direction: column;
-    /* Stack cards vertically */
-    gap: 40px;
-    margin-top: 20px;
-    padding-left: 0;
-    align-items: center;
-  }
-
-  .step-card {
-    min-width: 90%;
-    height: auto;
-    min-height: 300px;
-  }
-
-  /* HUD / About Section */
-  .hud-container {
-    padding: 20px;
-  }
-
-  .specs-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .stat-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-  }
-
-  .xp-bar-container {
-    width: 100%;
-    margin: 10px 0;
-  }
-
-  /* Intro */
-  .intro h1 {
-    font-size: 1.5rem;
-    letter-spacing: 4px;
-    padding: 0 20px;
   }
 }
