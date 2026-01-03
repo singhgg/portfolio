@@ -232,7 +232,9 @@ function initScrollAnimations() {
   const progressBar = document.querySelector('.progress-bar');
 
   ScrollTrigger.matchMedia({
-    // Desktop: Horizontal Scroll (Pin & Slide)
+
+    // ================= DESKTOP VIEW (MIN-WIDTH: 769px) =================
+    // Horizontal Scroll & Advanced Parallax
     "(min-width: 769px)": function () {
       if (!track) return;
 
@@ -272,7 +274,8 @@ function initScrollAnimations() {
       });
     },
 
-    // Mobile: Simple updates (Vertical Stack)
+    // ================= MOBILE VIEW (MAX-WIDTH: 768px) =================
+    // Vertical Stack & Simple Animations
     "(max-width: 768px)": function () {
       ScrollTrigger.create({
         trigger: '.process',

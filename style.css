@@ -1,3 +1,4 @@
+/* ================= DESKTOP / GLOBAL VIEW ================= */
 :root {
   --bg: #050505;
   --card-bg: rgba(20, 20, 32, 0.6);
@@ -120,7 +121,7 @@ body {
   -webkit-text-stroke: 0;
   border-right: 2px solid var(--primary);
   overflow: hidden;
-  animation: fillText 4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 4s;
+  animation: fillText 5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 5s;
 }
 
 @keyframes fillText {
@@ -318,7 +319,7 @@ body {
   /* Moved up to prevent overlap */
   left: 5%;
   z-index: 2;
-  font-size: 4rem;
+  font-size: 2rem;
   /* Larger title */
   text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
 }
@@ -619,12 +620,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .marquee-content span {
-    font-size: 3rem;
-    margin: 0 15px;
-  }
-}
+/* Moved to Mobile Section at bottom */
 
 .xp-bar-container {
   flex-grow: 1;
@@ -750,11 +746,7 @@ body {
   text-transform: uppercase;
 }
 
-@media (max-width: 768px) {
-  .specs-grid {
-    grid-template-columns: 1fr;
-  }
-}
+/* Moved to Mobile Section at bottom */
 
 .contact {
   padding: 150px 10%;
@@ -895,5 +887,138 @@ body {
   /* Hide custom cursor on touch */
   * {
     cursor: auto;
+  }
+}
+
+/* =============================================================================
+   MOBILE VIEW (MAX-WIDTH: 768px)
+   - Optimized for smaller screens
+   - Stacked layouts
+   - Simplified animations
+   ============================================================================= */
+@media (max-width: 768px) {
+
+  /* --- TYPOGRAPHY UPDATES --- */
+  .hero-title {
+    font-size: 3rem;
+    /* Smaller Title */
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .marquee-content span {
+    font-size: 3rem;
+    /* Smaller Marquee */
+    margin: 0 15px;
+  }
+
+  /* --- SPACING ADJUSTMENTS --- */
+  .hero,
+  .manifesto,
+  .gallery,
+  .system-specs,
+  .arsenal,
+  .contact {
+    padding: 80px 5%;
+  }
+
+  /* --- PROCESS SECTION (STACKED) --- */
+  /* --- PROCESS SECTION (HORIZONTAL SWIPE) --- */
+  .process-container {
+    padding-left: 0;
+    justify-content: center;
+    /* Center vertically */
+    padding-top: 100px;
+    /* Increased padding */
+    padding-bottom: 50px;
+    overflow: hidden;
+    /* Contain the scrollbar if needed */
+    height: auto;
+    /* Use content height on mobile */
+    min-height: auto;
+  }
+
+  .process-container h2 {
+    margin-bottom: 40px;
+    /* Space below title */
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* The actual scrollable track */
+  .process-track {
+    flex-direction: row;
+    /* Horizontal again */
+    gap: 20px;
+    padding: 0 5%;
+    /* Side padding for first/last card */
+    margin-top: 60px;
+    /* Push down track */
+    align-items: center;
+
+    /* Enabled Swiping */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+
+    /* Hide scrollbar for cleaner look */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-bottom: 20px;
+    /* Space for shadow */
+  }
+
+  .process-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .step-card {
+    min-width: 85vw;
+    /* Almost full screen width */
+    height: 350px;
+    scroll-snap-align: center;
+    /* Lock in center */
+    margin: 0;
+    /* Clear margins */
+  }
+
+  /* Adjust the line position for mobile */
+  .progress-container {
+    top: 55%;
+    /* Align with card center approximately */
+  }
+
+  /* --- HUD / ABOUT SECTION --- */
+  .hud-container {
+    padding: 20px;
+  }
+
+  .specs-grid {
+    grid-template-columns: 1fr;
+    /* Stack columns */
+    gap: 30px;
+  }
+
+  .stat-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .xp-bar-container {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  /* --- INTRO SCREEN --- */
+  .intro h1 {
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+    padding: 0 20px;
   }
 }
