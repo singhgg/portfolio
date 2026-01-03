@@ -327,9 +327,8 @@ body {
 .progress-container {
   position: absolute;
   top: 60%;
-  /* Lowered line */
   left: 0;
-  width: 130%;
+  width: 140%;
   height: 2px;
   background: rgba(255, 255, 255, 0.05);
   transform: translateY(-50%);
